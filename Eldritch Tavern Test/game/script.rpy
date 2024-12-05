@@ -7,7 +7,11 @@ define nin = Character(_("Rogue"))
 define pat = Character(_("Patron"))
 define eld = Character(_("???"))
 
+image ui reference = "ui reference.png"
+
 label start:
+    #show ui reference 
+
     "(Thursday evening, 596 PD. Later known as Vanquishing Day.)"
     
     pat "Hey, tavernkeep!" 

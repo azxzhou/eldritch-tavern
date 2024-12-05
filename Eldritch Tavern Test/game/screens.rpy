@@ -137,6 +137,11 @@ style window:
     ysize gui.textbox_height
 
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    # background Frame(textualBox, xalign=0.5, yalign=1.0)
+    
+# default theBox = "gui/textbox.png" # default box change
+# define textualBox = "[theBox]" # basically lets you define the textbox image when this is called
+
 
 style namebox:
     xpos gui.name_xpos
@@ -206,11 +211,28 @@ style input:
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
-    style_prefix "choice"
+    # style_prefix "choice"
+
+    window:
+        style "menu_window"
+        xalign 1.0 #change this to change menu placement
+        yalign 1.0
 
     vbox:
-        for i in items:
-            textbutton i.caption action i.action
+        style "menu"
+        spacing 5 
+
+        for caption, action, chosen in items:
+            if action:
+                button:
+                    action action
+                    style "menu_choice_button"
+                    xysize(300,100) #change button size
+                    text caption style "menu_choice"
+            else:
+                text caption style "menu_caption"
+        # for i in items:
+            # textbutton i.caption action i.action
 
 
 style choice_vbox is vbox
@@ -218,7 +240,7 @@ style choice_button is button
 style choice_button_text is button_text
 
 style choice_vbox:
-    xalign 0.5
+    xalign 1.0
     ypos 405
     yanchor 0.5
 
